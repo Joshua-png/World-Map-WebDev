@@ -1,13 +1,13 @@
 <template>
   <nav class="navbar navbar-dark" style="background: #b2beb5;">
     <div class="container">
-      <select class="form-select" v-model="selected" @change="onSelect">
-        <option value="osm" class="bg-dark text-white"
-          >OSM with GPS data</option
-        >
-        <option value="wms" class="bg-dark text-white"
-          >World Map via WMS</option
-        >
+      <select
+        class="form-select"
+        v-model="selected"
+        @change="onSelect"
+      >
+        <option value="osm" class="bg-dark text-white">OSM with GPS data</option>
+        <option value="wms" class="bg-dark text-white">World Map via WMS</option>
         <!-- <option value="mq">Mapquest</option> -->
       </select>
     </div>
@@ -18,7 +18,7 @@
 
 <script>
 //Open Street Map
-//World Map Service
+//World Map
 import { onMounted, computed, ref, watch } from "vue";
 import { useGeolocation } from "@/composables/useGeolocation.js";
 import { useOpenLayers } from "@/composables/useOpenLayers.js";
@@ -71,13 +71,8 @@ export default {
       }
     };
 
-    onMounted(() => {
-      olMap.value = new Map({}
-        layers: layersOSM,
-        target: geoMap.value,
-        view: new View({
-          center: [0, 0],
-          zoom: 4,
+    onMounted(() => {olMap.value = new Map({layers: layersOSM,target: geoMap.value,view: new View({
+          center: [0, 0],zoom: 4,
         }),
       });
     });
